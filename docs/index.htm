@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>jQuery changeElementType Plugin Examples</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script src="js/prism.js"></script>
+    <script src="../src/jquery.changeelementtype.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/prism.css">
+  </head>
+  <body>
+
+    <h1>jQuery changeElementType Plugin Examples</h1>
+
+    <ul>
+      <li><a href="example-basic">Basic element change</a></li>
+      <li><a href="example-multiple">Multiple element change</a></li>
+      <li><a href="example-events">Event persistence</a></li>
+      <li><a href="example-nested">Nested elements</a></li>
+    </ul>
+
+    <h2 id="example-basic">Basic element change (div to p)</h2>
+
+    <div id="example-basic-div" data-something="foo" class="someclass">Hello, my name is Simon.</div>
+    <button id="example-basic-div-button">Change</button>
+
+    <pre>
+      <code class="language-javascript">
+        $('#example-basic-div').changeElementType('p');
+      </code>
+    </pre>
+
+    <script>
+      $('#example-basic-div-button').click(function(e) {
+        $('#example-basic-div').changeElementType('p');
+      });
+    </script>
+
+    <h2 id="example-multiple">Multiple element change (divs to ps)</h2>
+
+    <div class="example-multiple-div">Hello, my name is Simon.</div>
+    <div class="example-multiple-div">And I like to do drawings.</div>
+    <button id="example-multiple-div-button">Change</button>
+
+    <pre>
+      <code class="language-javascript">
+        $('.example-multiple-div').changeElementType('p');
+      </code>
+    </pre>
+
+    <script>
+      $('#example-multiple-div-button').click(function(e) {
+        $('.example-multiple-div').changeElementType('p');
+      });
+    </script>
+
+    <h2 id="example-events">Event persistence</h2>
+
+    <div id="example-events-div">I have a click event attached to me.</div>
+    <button id="example-events-div-button">Change</button>
+
+    <pre>
+      <code class="language-javascript">
+        $('#example-events-div').click(function(e) {
+          console.log("I am a " + e.target.tagName);
+        })
+        .changeElementType('p');
+      </code>
+    </pre>
+
+    <script>
+      $('#example-events-div').click(function(e) {
+        alert("I am a " + e.target.tagName);
+      });
+      $('#example-events-div-button').click(function(e) {
+        $('#example-events-div').changeElementType('p');
+      });
+    </script>
+
+    <h2 id="example-nested">Nested</h2>
+
+    <select id="example-nested-select">
+      <option>One</option>
+      <option>Two</option>
+      <option>Three</option>
+    </select>
+
+    <button id="example-nested-button">Change</button>
+
+    <pre>
+      <code class="language-javascript">
+        var select = $('#example-nested-select');
+        select.children().changeElementType('div');
+        select.changeElementType('div');
+      </code>
+    </pre>
+
+    <script>
+      $('#example-nested-button').click(function(e) {
+        var select = $('#example-nested-select');
+        select.children().changeElementType('div');
+        select.changeElementType('div');
+      });
+    </script>
+
+  </body>
+</html>
